@@ -64,3 +64,21 @@ function deleteNote(index){
     localStorage.setItem("notes", JSON.stringify(notesObj));
     showNotes();
 }
+
+
+let search = document.getElementById('searchTxt');
+search.addEventListener("input",function(){
+    let inputValue = search.value.toLowerCase();
+    let noteCards = document.getElementsByClassName("noteCard");
+    Array.from(noteCards).forEach(function(element){
+        let cardText = element.getElementsByTagName("p")[0].innerText;
+        if(cardText.includes(inputValue)){
+            element.style.display = "block";
+        }
+        else{
+            element.style.display = "none";
+        }
+
+    })
+
+})
