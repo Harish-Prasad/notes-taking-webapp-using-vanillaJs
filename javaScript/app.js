@@ -36,7 +36,7 @@ function showNotes(){
             <div class="card-body">
                 <h5 class="card-title">Note ${index + 1}</h5>
                 <p class="card-text">${element}</p>
-                <button class="btn btn-primary">Delete Note</button>
+                <button onclick = "deleteNote(this.id)" id="${index}" class="btn btn-primary">Delete Note</button>
             </div>
         </div>  
         `;
@@ -49,4 +49,18 @@ function showNotes(){
     else{
         notesElm.innerHTML = `No Notes in your Bag, Sorry!  :( `;
     }
+}
+
+
+function deleteNote(index){
+    let notes = localStorage.getItem("notes");
+    if (notes == null) {
+        notesObj = [];
+    }
+    else {
+        notesObj = JSON.parse(notes);
+    }
+    notesObj.splice(index,1);
+    localStorage.setItem("notes", JSON.stringify(notesObj));
+    showNotes();
 }
